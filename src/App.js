@@ -8,15 +8,24 @@ import Databinding from "./Databinding/Databinding";
 import EvenBinding from "./EventBinding/EvenBinding";
 import HandleState from "./HandleState/HandleState";
 import BaiTapChonXe from "./HandleState/BaiTapChonXe";
+import RenderWithMap from "./RenderWithMap/RenderWithMap";
+import EXRenderMap from "./RenderWithMap/EXRenderMap";
+import DemoProps from "./Props/DemoProps";
+import BT2ProductList from "./Props/BT2ProductList/BT2ProductList";
 
 function App() {
   return (
     <div className="App">
       {/* <Databinding /> */}
+      {/* <BaiTapLayout /> */}
       {/* <p className="title">Hello</p> */}
       {/* <EvenBinding /> */}
       {/* <HandleState /> */}
-      <BaiTapChonXe />
+      {/* <BaiTapChonXe /> */}
+      {/* <RenderWithMap /> */}
+      {/* <EXRenderMap /> */}
+      {/* <DemoProps /> */}
+      <BT2ProductList />
     </div>
   );
 }
