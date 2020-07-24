@@ -1,9 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux"; //Thư viện kết nối react Component và redux store
+import DanhSachSanPhamRedux from "./DanhSachSanPhamRedux";
 
-export default class ModalGH extends Component {
+class GioHangRedux extends Component {
   renderGioHang = () => {
-    let { giohang, xoaGioHang, tangGiamSoLuong } = this.props;
-    return giohang.map((sanPhamGH, index) => {
+    let { gioHang } = this.props;
+    return gioHang.map((sanPhamGH, index) => {
       return (
         <tr key={index}>
           <td>{sanPhamGH.maSP}</td>
@@ -15,7 +17,7 @@ export default class ModalGH extends Component {
             <button
               className="btn btn-primary"
               onClick={() => {
-                tangGiamSoLuong(sanPhamGH.maSP, true);
+                //   tangGiamSoLuong(sanPhamGH.maSP, true);
               }}
             >
               +
@@ -24,20 +26,19 @@ export default class ModalGH extends Component {
             <button
               className="btn btn-primary"
               onClick={() => {
-                tangGiamSoLuong(sanPhamGH.maSP, false);
+                //   tangGiamSoLuong(sanPhamGH.maSP, false);
               }}
             >
               -
             </button>
           </td>
-          <td>{sanPhamGH.soLuong}</td>
           <td>{sanPhamGH.gia}</td>
           <td>{sanPhamGH.gia * sanPhamGH.soLuong}</td>
           <td>
             <button
               className="btn btn-danger"
               onClick={() => {
-                xoaGioHang(sanPhamGH.maSP);
+                //   xoaGioHang(sanPhamGH.maSP);
               }}
             >
               Xóa
@@ -48,11 +49,10 @@ export default class ModalGH extends Component {
     });
   };
   tinhTongTien = () => {
-    return this.props.giohang.reduce((tongTien, spGH, index) => {
+    return this.props.gioHang.reduce((tongTien, spGH, index) => {
       return (tongTien += spGH.soLuong * spGH.gia);
     }, 0);
   };
-
   render() {
     return (
       <div className="container">
@@ -80,3 +80,11 @@ export default class ModalGH extends Component {
     );
   }
 }
+//   hàm có nhiệm vụ biến đổi state của redux trở thành props của component
+const mapStateToProps = (state) => {
+  //state ứng với rootReducer
+  return {
+    gioHang: state.GioHangReducer.stateGioHang,
+  };
+};
+export default connect(mapStateToProps)(GioHangRedux);

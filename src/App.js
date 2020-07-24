@@ -14,6 +14,7 @@ import DemoProps from "./Props/DemoProps";
 import BT2ProductList from "./Props/BT2ProductList/BT2ProductList";
 import DemoPropsFunction from "./Props/DemoPropsFunction/DemoPropsFunction";
 import BTGH from "./Props/BaiTapGioHangProps/BTGH";
+import BaiTapGioHangRedux from "./ReduxDemo/BaiTapGioHangRedux/BaiTapGioHangRedux";
 
 function App() {
   return (
@@ -29,7 +30,8 @@ function App() {
       {/* <DemoProps /> */}
       {/* <BT2ProductList /> */}
       {/* <DemoPropsFunction /> */}
-      <BTGH />
+      {/* <BTGH /> */}
+      <BaiTapGioHangRedux />
     </div>
   );
 }

@@ -33,6 +33,35 @@ export default class BTGH extends Component {
     // Cập nhật giỏ hàng cũ bằng phương thức setState
     this.setState({ giohang: gioHangCapNhat });
   };
+  xoaGioHang = (maSP) => {
+    console.log(maSP);
+    let gioHangCapNhat = [...this.state.giohang];
+    let index = gioHangCapNhat.findIndex((spGH) => spGH.maSP == maSP);
+    if (index !== -1) {
+      gioHangCapNhat.splice(index, 1);
+    }
+    // setState
+    this.setState({ giohang: gioHangCapNhat });
+  };
+
+  tangGiamSoLuong = (maSP, tangGiam) => {
+    // true là tăng, false là giảm
+    // tìm ra sản phẩm trong giỏ hàng =>tăng giảm số lượng
+    let gioHangCapNhat = [...this.state.giohang];
+    let index = gioHangCapNhat.findIndex((spGH) => spGH.maSP == maSP);
+    if (index !== -1) {
+      if (tangGiam) {
+        gioHangCapNhat[index].soLuong += 1;
+      } else {
+        if (gioHangCapNhat[index].soLuong > 1) {
+          gioHangCapNhat[index].soLuong -= 1;
+        } else {
+          alert("Số lượng tối thiểu là 1!");
+        }
+      }
+    }
+    this.setState({ giohang: gioHangCapNhat });
+  };
 
   arrProduct = [
     {
@@ -77,7 +106,11 @@ export default class BTGH extends Component {
     return (
       <div>
         <DSSP themGioHang={this.themGioHang} sanPham={this.arrProduct} />
-        <ModalGH giohang={this.state.giohang} />
+        <ModalGH
+          tangGiamSoLuong={this.tangGiamSoLuong}
+          xoaGioHang={this.xoaGioHang}
+          giohang={this.state.giohang}
+        />
       </div>
     );
   }
